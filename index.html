@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">  
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Para ti mi amor, mi ricurita ♡</title>
+  <!-- Tipografías: Cormorant (títulos elegantes) y Dancing Script (manuscrita) -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@400;600&family=Dancing+Script:wght@500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Aquí JavaScript dibuja las flores y corazones flotantes -->
+  <div id="particulas"></div>
+
+  <!-- ========== PANTALLA 1: BIENVENIDA ========== -->
+  <section class="pantalla activa" id="pantalla1">
+    <div class="ramo aparece" style="--d:.1s">🌷 🌸 🌼 🌸 🌷</div>
+    <p class="etiqueta aparece" style="--d:.4s">♡ PARA TI MI AMOR ♡</p>
+    <h1 class="titulo aparece" style="--d:.7s">FELIZ CUMPLEAÑOS  </h1>
+    <p class="nombre script aparece" style="--d:1s"><span class="js-nombre"></span> ♡</p>
+    <p class="frase script aparece" id="fraseBienvenida" style="--d:1.3s"></p>
+    <div class="distancia aparece" style="--d:1.6s">
+      <span>❤️</span><span class="puntos"></span><span>❤️</span>
+    </div>
+    <button class="boton aparece" id="btnComenzar" style="--d:1.9s">COMENZAR →</button>
+  </section>
+
+  <!-- ========== PANTALLA 2: CANCIÓN ========== -->
+  <section class="pantalla" id="pantalla2">
+    <p class="script grande aparece" style="--d:.1s">UNA CANCIÓN PARA TU DÍA MI BEBÉ</p>
+    <p class="etiqueta aparece" style="--d:.3s">CON MUCHO AMOR, TU RICURITA, TU PAPI  </p>
+
+    <div class="reproductor aparece" style="--d:.5s">
+      <div class="portada">
+        <span>🎵</span>
+        <img id="portada" alt="Portada" onerror="this.style.display='none'">
+      </div>
+      <h2 id="cancionTitulo"></h2>
+      <p id="cancionArtista" class="artista"></p>
+
+      <input type="range" id="barra" min="0" max="100" value="0" step="0.1" aria-label="Progreso">
+      <div class="tiempos"><span id="tActual">0:00</span><span id="tTotal">0:00</span></div>
+
+      <div class="controles">
+        <button class="ctrl" id="btnRepetir" aria-label="Repetir">🔁</button>
+        <button class="ctrl" id="btnAnterior" aria-label="Anterior">⏮</button>
+        <button class="ctrl play" id="btnPlay" aria-label="Play / Pause">▶</button>
+        <button class="ctrl" id="btnSiguiente" aria-label="Siguiente">⏭</button>
+      </div>
+
+      <div class="volumen">🔈 <input type="range" id="volumen" min="0" max="1" step="0.01" value="0.8" aria-label="Volumen"></div>
+      <div class="lista" id="lista"></div>
+      <p id="avisoAudio" class="aviso"></p>
+    </div>
+
+    <p class="frase script aparece" id="fraseCancion" style="--d:.8s"></p>
+    <button class="boton aparece" id="btnACarta" style="--d:1s">CONTINUAR →</button>
+  </section>
+
+  <!-- ========== PANTALLA 3: CARTA ========== -->
+  <section class="pantalla" id="pantalla3">
+    <div class="carta" id="cartaPapel">
+      <div class="flores-carta">🌸 🌷 🌸</div>
+      <p class="fecha" id="cartaFecha"></p>
+      <p class="saludo script" id="cartaSaludo"></p>
+      <p class="texto" id="cartaTexto"></p>
+      <p class="firma script" id="cartaFirma"></p>
+    </div>
+    <p class="pista" id="pistaCarta">Toca la carta para verla completa</p>
+    <button class="boton oculto" id="btnASorpresa">CONTINUAR →</button>
+  </section>
+
+  <!-- ========== PANTALLA 4: SORPRESA FINAL ========== -->
+  <section class="pantalla" id="pantalla4">
+    <!-- 4a: la caja cerrada -->
+    <div id="regalo" class="centrado">
+      <div class="caja" id="caja">🎁</div>
+      <p class="etiqueta">PRESIONA ACAAAAAAAAAAA JAJAJA...</p>
+      <button class="boton" id="btnAbrir">ABRIR</button>
+    </div>
+
+    <!-- 4b: mensaje final (oculto hasta abrir) -->
+    <div id="final" class="centrado oculto">
+      <div class="tarta">🎂</div>
+      <h1 class="titulo">FELIZ 21 AÑITOS</h1>
+      <p class="nombre script"><span class="js-nombre"></span> ❤️</p>
+      <div class="distancia" id="distanciaFinal">
+        <span>❤️</span><span class="puntos"></span><span>❤️</span>
+      </div>
+      <div id="mensajeFinal" class="mensaje"></div>
+      <p class="teamo script" id="teAmo"></p>
+    </div>
+  </section>
+
+  <script src="script.js"></script>
+</body>
+</html>

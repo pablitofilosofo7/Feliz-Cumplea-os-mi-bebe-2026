@@ -1,0 +1,141 @@
+/* ============ COLORES (cámbialos aquí) ============ */
+:root {
+  --crema: #fff8f0;
+  --rosa: #f9dbe4;
+  --rosa-fuerte: #e59ab3;
+  --lila: #e8dcf6;
+  --dorado: #c9a46a;
+  --texto: #6b4a5a;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body {
+   font-variant-numeric: lining-nums;
+  min-height: 100dvh;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  color: var(--texto);
+  background: linear-gradient(160deg, var(--crema) 0%, var(--rosa) 55%, var(--lila) 100%);
+  background-attachment: fixed;
+  overflow-x: hidden;
+}
+
+/* ============ PARTÍCULAS FLOTANTES ============ */
+#particulas { position: fixed; inset: 0; pointer-events: none; z-index: 0; }
+#particulas span {
+  position: absolute; bottom: -30px; opacity: 0;
+  animation: flotar linear infinite;
+}
+@keyframes flotar {
+  0% { transform: translateY(0) rotate(0deg); opacity: 0; }
+  15% { opacity: .5; }
+  85% { opacity: .4; }
+  100% { transform: translateY(-110vh) rotate(40deg); opacity: 0; }
+}
+
+/* ============ PANTALLAS Y TRANSICIONES ============ */
+.pantalla {
+  display: none; position: relative; z-index: 1;
+  min-height: 100dvh; padding: 28px 20px;
+  flex-direction: column; align-items: center; justify-content: center;
+  text-align: center; gap: 14px;
+}
+.pantalla.activa { display: flex; animation: entra .7s ease both; }
+.pantalla.saliendo { animation: sale .5s ease both; }
+@keyframes entra { from { opacity: 0; } to { opacity: 1; } }
+@keyframes sale { to { opacity: 0; transform: translateY(-10px); } }
+.aparece { opacity: 0; animation: sube 1s ease forwards; animation-delay: var(--d, 0s); }
+@keyframes sube { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: none; } }
+.oculto { display: none !important; }
+.centrado { display: flex; flex-direction: column; align-items: center; gap: 14px; animation: entra 1s ease both; }
+
+/* ============ TEXTOS ============ */
+.titulo { font-size: clamp(2.4rem, 11vw, 3.8rem); font-weight: 600; color: var(--texto); letter-spacing: .02em; }
+.script { font-family: "Dancing Script", cursive; }
+.nombre { font-size: clamp(2rem, 9vw, 3rem); color: var(--rosa-fuerte); }
+.frase { font-size: 1.35rem; max-width: 320px; line-height: 1.4; }
+.grande { font-size: 2.2rem; color: var(--rosa-fuerte); }
+.etiqueta { letter-spacing: .25em; font-size: .95rem; color: var(--dorado); }
+.ramo { font-size: 2.2rem; filter: drop-shadow(0 4px 6px rgba(229,154,179,.4)); }
+
+/* ============ BOTONES ============ */
+.boton {
+  min-height: 52px; padding: 0 34px; border: 1.5px solid var(--dorado); border-radius: 30px;
+  background: rgba(255,255,255,.7); color: var(--texto);
+  font: 600 1.05rem "Cormorant Garamond", serif; letter-spacing: .15em; cursor: pointer;
+  box-shadow: 0 6px 18px rgba(229,154,179,.35);
+  transition: transform .3s, background .3s, box-shadow .3s;
+}
+.boton:hover { transform: translateY(-3px) scale(1.04); background: var(--rosa-fuerte); color: #fff; box-shadow: 0 10px 22px rgba(229,154,179,.55); }
+
+/* ============ CORAZONES A DISTANCIA ============ */
+.distancia { display: flex; align-items: center; gap: 8px; font-size: 1.3rem; }
+.puntos { width: 130px; border-top: 3px dotted var(--rosa-fuerte); transition: width 6s ease-in-out; }
+.distancia.juntos .puntos { width: 0; border-top-width: 0; }
+.distancia.juntos span:not(.puntos) { animation: latido 1.6s ease-in-out infinite 6s; }
+@keyframes latido { 50% { transform: scale(1.25); } }
+
+/* ============ REPRODUCTOR ============ */
+.reproductor {
+  width: 100%; max-width: 360px; padding: 24px 22px; border-radius: 28px;
+  background: rgba(255,255,255,.75); box-shadow: 0 12px 34px rgba(160,110,140,.25);
+  display: flex; flex-direction: column; gap: 10px;
+}
+.portada {
+  position: relative; width: 150px; height: 150px; margin: 0 auto 6px; border-radius: 24px; overflow: hidden;
+  background: linear-gradient(135deg, var(--rosa), var(--lila));
+  display: grid; place-items: center; font-size: 3rem; box-shadow: 0 8px 20px rgba(229,154,179,.4);
+}
+.portada img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.reproductor h2 { font-size: 1.5rem; }
+.artista { font-size: 1rem; opacity: .8; }
+input[type=range] { width: 100%; accent-color: var(--rosa-fuerte); height: 28px; cursor: pointer; }
+.tiempos { display: flex; justify-content: space-between; font-size: .95rem; margin-top: -6px; }
+.controles { display: flex; justify-content: center; align-items: center; gap: 14px; }
+.ctrl { width: 48px; height: 48px; border: none; border-radius: 50%; background: var(--lila); font-size: 1.15rem; cursor: pointer; transition: transform .2s; }
+.ctrl:hover { transform: scale(1.1); }
+.ctrl.play { width: 64px; height: 64px; background: var(--rosa-fuerte); color: #fff; font-size: 1.5rem; }
+.ctrl.activo { background: var(--dorado); }
+.volumen { display: flex; align-items: center; gap: 8px; }
+.lista { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+.lista button { border: 1px solid var(--lila); background: #fff; border-radius: 16px; padding: 6px 12px; font: inherit; font-size: .9rem; color: var(--texto); cursor: pointer; }
+.lista button.actual { background: var(--rosa); border-color: var(--rosa-fuerte); }
+.aviso { font-size: .85rem; color: var(--dorado); min-height: 1em; }
+
+/* ============ CARTA ============ */
+#pantalla3 {
+  background-size: cover; background-position: center;
+  background-image: var(--fondo-carta, none);
+}
+#pantalla3::before { /* velo suave para que el fondo se vea desenfocado y romántico */
+  content: ""; position: absolute; inset: 0; backdrop-filter: blur(6px); background: rgba(248,215,224,.35); z-index: -1;
+}
+.carta {
+  width: 100%; max-width: 440px; max-height: 68dvh; overflow-y: auto; padding: 30px 26px; border-radius: 22px; text-align: left;
+  background:
+    repeating-linear-gradient(transparent 0 33px, rgba(201,164,106,.22) 33px 34px),
+    #fffaf2;
+  box-shadow: 0 16px 40px rgba(120,80,100,.3); cursor: pointer;
+  animation: sube 1.2s ease both;
+}
+.flores-carta { text-align: center; font-size: 1.4rem; margin-bottom: 8px; }
+.fecha { text-align: right; font-size: 1rem; opacity: .75; line-height: 34px; }
+.saludo { font-size: 1.7rem; color: var(--rosa-fuerte); line-height: 34px; }
+.texto { font-size: 1.2rem; line-height: 34px; white-space: pre-wrap; }
+.firma { white-space: pre-wrap; }
+.firma { font-size: 1.6rem; text-align: right; color: var(--rosa-fuerte); line-height: 34px; margin-top: 10px; }
+.pista { font-size: .9rem; opacity: .7; }
+
+/* ============ SORPRESA ============ */
+.caja { font-size: 6rem; cursor: pointer; animation: flota 3s ease-in-out infinite; }
+@keyframes flota { 50% { transform: translateY(-10px); } }
+.caja.abriendo { animation: abre 1s ease forwards; }
+@keyframes abre {
+  0% { transform: rotate(0); } 20% { transform: rotate(-12deg); } 40% { transform: rotate(12deg); }
+  60% { transform: rotate(-8deg) scale(1.1); } 100% { transform: scale(2.6); opacity: 0; }
+}
+.tarta { font-size: 3.5rem; }
+.mensaje { max-width: 340px; display: flex; flex-direction: column; gap: 12px; font-size: 1.25rem; line-height: 1.45; }
+.teamo { font-size: 2.6rem; color: var(--rosa-fuerte); }
+.confeti { position: fixed; top: -10px; width: 8px; height: 12px; border-radius: 2px; z-index: 5; pointer-events: none; animation: cae linear forwards; }
+@keyframes cae { to { transform: translateY(105vh) rotate(500deg); opacity: .6; } }
+
+@media (prefers-reduced-motion: reduce) { * { animation-duration: .01s !important; transition-duration: .01s !important; } }
